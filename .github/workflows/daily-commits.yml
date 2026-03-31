@@ -28,21 +28,23 @@ jobs:
         run: |
           echo "Automated random commit generation..."
           mkdir -p logs
-          for i in $(seq 1 5); do
-            echo "$(date): Commit #$i" >> logs/daily.txt
-            MESSAGE=$(shuf -n 1 <<'EOF'
-            JavaScript closures allow functions to access outer scope variables.
-            Python's list comprehensions are both elegant and efficient.
-            Java streams simplify functional-style operations.
-            JavaScript async/await makes asynchronous code readable.
-            Python's generators help manage memory with large data.
-            EOF
-            )
-            Java is platform-independent thanks to the JVM.
-            echo "$MESSAGE" >> logs/daily.txt
-            git add logs/daily.txt
-            git commit -m "$MESSAGE" || true
-          done
+          echo "$(date): Daily commit entry" >> logs/daily.txt
+          
+          MESSAGE=$(shuf -n 1 <<'EOF'
+           JavaScript closures allow functions to access outer scope variables.
+           Python's list comprehensions are both elegant and efficient.
+           Java streams simplify functional-style operations.
+          JavaScript async/await makes asynchronous code readable.
+          Python's generators help manage memory with large data.
+          Java is platform-independent thanks to the JVM.
+          EOF
+          )
+
+          echo "$MESSAGE" >> logs/daily.txt
+          git add logs/daily.txt
+          git commit -m "$MESSAGE" || echo "No changes to commit"
 
       - name: Push commits
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: git push
