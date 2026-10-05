@@ -370,3 +370,5 @@ Sat Oct  3 14:36:09 UTC 2026: Daily commit entry
  Java streams simplify functional-style operations.
 Sun Oct  4 15:11:42 UTC 2026: Daily commit entry
 JavaScript async/await makes asynchronous code readable.
+Mon Oct  5 19:08:30 UTC 2026: Daily commit entry
+ JavaScript closures allow functions to access outer scope variables.
